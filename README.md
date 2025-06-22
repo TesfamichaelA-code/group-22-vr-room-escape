@@ -1,5 +1,7 @@
 # 🚪 VR Room Escape
 
+**Live Demo:** [Play on GitHub Pages](https://tesfamichaela-code.github.io/group-22-vr-room-escape/)
+
 A fully interactive 3D room escape game built with Three.js and WebXR, featuring multiple rooms, puzzles, and immersive VR gameplay.
 
 ## 🎮 About
@@ -225,4 +227,4 @@ This project is open source and available under the MIT License.
 ## 🛠️ Dependencies
 
 - **Three.js**: 3D graphics and rendering
-- **PointerLockControls**: Mouse look controls 
+- **PointerLockControls**: Mouse look controls
