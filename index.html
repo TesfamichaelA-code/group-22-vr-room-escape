@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VR Room Escape Game - Use WebXR with Three.js for a fully immersive escape room experience</title>
+    <link rel="stylesheet" href="src/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/three@0.160.0/examples/js/controls/PointerLockControls.js"></script>
+</head>
+<body>
+    <div id="loadingScreen">
+        <div class="loading-title">VR ROOM ESCAPE</div>
+        <div class="loading-subtitle">Initializing VR Game Experience...</div>
+        <div class="loading-bar">
+            <div class="loading-progress" id="loadingProgress"></div>
+        </div>
+        <div id="loadingText">Loading game...</div>
+    </div>
+
+    <div id="gameContainer">
+        <div id="ui">
+            <div id="timer">Time: 15:00</div>
+            <div id="objective">Find the key and solve puzzles to escape!</div>
+            <div id="inventory">
+                <h4>Inventory</h4>
+                <div id="items"></div>
+            </div>
+        </div>
+
+        <div id="instructions">
+            <div class="control-section">
+                <div class="control-title">Desktop Controls</div>
+                <div>WASD to move • Mouse drag to look around • Click objects to interact</div>
+            </div>
+            <div class="control-section">
+                <div class="control-title">Game Controls</div>
+                <div>Escape to pause • Click to interact with objects • Complete puzzles to progress</div>
+            </div>
+        </div>
+
+        <div id="vrControls">
+            <button id="enterVR" class="vr-btn">Enter VR</button>
+            <button id="exitVR" class="vr-btn" style="display: none;">Exit VR</button>
+        </div>
+
+        <div class="vr-reticle"></div>
+        <div class="vr-session-info">VR Session Active</div>
+
+        <div id="winMessage">
+            <h2>🎉 ESCAPE SUCCESSFUL!</h2>
+            <p>Congratulations! You've successfully escaped the room!</p>
+            <p id="finalTime"></p>
+            <div style="margin-top: 20px; font-size: 1.2rem; color: #ffe66d;">
+                🏆 Master Escape Artist 🏆
+            </div>
+        </div>
+
+        <div id="messagePopup" class="message-popup"></div>
+
+        <!-- Color Puzzle Panel -->
+        <div id="colorPuzzle" class="puzzle-panel">
+            <h3>🎨 Color Sequence Puzzle</h3>
+            <p>Watch the sequence carefully, then repeat it:</p>
+            <div id="sequenceDisplay" class="sequence-display"></div>
+            <div class="color-buttons">
+                <button class="color-btn" style="background-color: red;" data-color="red"></button>
+                <button class="color-btn" style="background-color: blue;" data-color="blue"></button>
+                <button class="color-btn" style="background-color: green;" data-color="green"></button>
+                <button class="color-btn" style="background-color: yellow;" data-color="yellow"></button>
+            </div>
+            <button class="btn close-btn" onclick="closePuzzle()">Close</button>
+        </div>
+
+        <!-- Number Puzzle Panel -->
+        <div id="numberPuzzle" class="puzzle-panel">
+            <h3>🔢 Digital Lock</h3>
+            <p>Enter the 4-digit security code:</p>
+            <div class="number-input">
+                <input type="number" min="0" max="9" id="num1" maxlength="1">
+                <input type="number" min="0" max="9" id="num2" maxlength="1">
+                <input type="number" min="0" max="9" id="num3" maxlength="1">
+                <input type="number" min="0" max="9" id="num4" maxlength="1">
+            </div>
+            <button class="btn submit-btn" onclick="checkNumberCode()">Submit Code</button>
+            <button class="btn close-btn" onclick="closePuzzle()">Close</button>
+        </div>
+
+        <!-- Note Panel -->
+        <div id="notePanel">
+            <h3>📜 Mysterious Note</h3>
+            <p style="font-size: 16px; line-height: 1.8; font-style: italic;">
+                "If you're reading this, you've found my secret note!<br><br>
+                The combination to the digital lock is: <strong style="color: #ff6b6b; font-size: 1.2em;">2847</strong><br><br>
+                I've hidden clues around the room in colored panels.<br>
+                Look for the numbers in order: Red, Green, Blue, Yellow<br><br>
+                Use this knowledge wisely, fellow escapee...<br><br>
+                - A Previous Prisoner"
+            </p>
+            <button class="btn close-btn" onclick="closeNote()">Close Note</button>
+        </div>
+    </div>
+
+    <!-- Three.js Scripts -->
+    <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+    <script type="module" src="src/js/main.js"></script>
+</body>
+</html>
